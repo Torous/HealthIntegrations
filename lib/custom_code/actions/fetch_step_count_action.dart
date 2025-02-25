@@ -45,7 +45,6 @@ Future<bool> authorize(
   bool? hasPermissions =
       await health.hasPermissions(types, permissions: permissions);
 
-  hasPermissions = false;
   bool authorized = false;
   if (!hasPermissions) {
     try {
@@ -55,6 +54,8 @@ Future<bool> authorize(
       debugPrint("Exception in authorize: $error");
       return false;
     }
+  } else {
+    authorized = true;
   }
   return authorized;
 }
